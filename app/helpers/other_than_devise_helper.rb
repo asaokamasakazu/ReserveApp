@@ -1,0 +1,2 @@
+module OtherThanDeviseHelper
+end

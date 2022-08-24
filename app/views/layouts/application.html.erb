@@ -1,16 +1,92 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ReservationApp0</title>
+    <title>ReservationApp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'home', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header>
+      <div class="header-container">
+
+        <div class="header-left">
+          <div class="header-left-top">
+            <a href="/">
+              <img alt="サイトのロゴ画像" src="https://presite-potepancamp-rails-02.herokuapp.com/assets/logo.png">
+            </a>
+            <div class="header-left-search">
+              <%= search_form_for @q, url: search_rooms_path do |f| %>
+                <%= f.search_field :address_cont, placeholder: "エリアで検索" %>
+              <% end %>
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="header-left-search ">
+              <%= search_form_for @q, url: search_rooms_path do |f| %>
+                <%= f.search_field :name_or_address_or_introduction_cont, placeholder: "キーワードで検索" %>
+              <% end %>
+              <i class="fas fa-search"></i>
+            </div>
+          </div>
+
+          <div class="header-left-under">
+            <div class="header-left-items">
+              <% if current_user.present? %>
+                <p><%= link_to("ルーム一覧", "/rooms") %></p>
+                <p><%= link_to("予約済みルーム一覧", "/reservations") %></p>
+                <p><%= link_to("ルーム登録", "/rooms/new") %></p>
+                <p><%= link_to("登録済みルーム一覧", "/rooms/posts") %></p>
+                <p><%= link_to("設定", "/users/account") %></p>
+                <p><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %></p>
+              <% else %>
+                <p><%= link_to("ルーム一覧", "/rooms") %></p>
+                <p><%= link_to("予約済みルーム一覧", "/reservations") %></p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="header-right-items">
+            <% if current_user.present? %>
+              <p><a href="/users/account"><%= current_user.name %></a></p>
+              <a href="/users/account"><img class="host-icon" alt="ユーザーアイコン画像" src="/default_images/user_image_default.jpg"></a>
+            <% else %>
+              <div class="header-signup_btn">
+                <%= link_to("ログイン", "/users/sign_in") %>
+              </div>
+              <div class="header-signin_btn">
+                <%= link_to("登録する", "/users/sign_up") %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+    <% if notice %>
+      <div class="notice">
+        <p><%= notice %></p>
+      </div>
+    <% end %>
+    <% if alert %>
+      <div class="alert">
+        <p><%= alert %></p>
+      </div>
+    <% end %>
+
     <%= yield %>
+
+    <footer>
+      <p>© 2020 POTEPAN.INC.</p>
+    </footer>
   </body>
 </html>

@@ -1,0 +1,54 @@
+<div class="reservation-new">
+
+  <h2 class="reservation-new-title">予約内容確認</h2>
+
+  <p class="reservations-new-price-day">¥<%= @room.price %> / 日</p>
+
+  <%= form_tag("/reservations/#{@reservations_count + 1}") do %>
+
+    <div class="reservation-new-form">
+      <p>開始日</p>
+      <input type="date" name="start_day" readonly="readonly" value="<%= @reservation.start_day %>">
+    </div>
+
+    <div class="reservation-new-form">
+      <p>終了日</p>
+      <input type="date" name="finish_day" readonly="readonly" value="<%= @reservation.finish_day %>">
+    </div>
+
+    <div class="reservation-new-number-of-days">
+      <p>使用日数 : <%= @stay_days %>日</p>
+    </div>
+
+    <div class="reservation-new-number-of-people">
+      <p>人数 : <%= @reservation.number_of_people %>人</p>
+    </div>
+
+    <div class="reservation-new-form">
+      <p>合計金額</p>
+      <input type="text" name="total_amount" readonly="readonly" value="<%= @total_amount %>円">
+    </div>
+
+    <p class="reservation-new-p">上記内容でよろしければ「予約を確定する」を押してください。</p>
+
+    <input type="hidden" value="<%= @room.id %>" name="room_id">
+
+    <div class="reservation-new-btn-create">
+      <input type="submit" value="予約を確定する">
+    </div>
+
+  <% end %>
+
+  <%= form_tag("/rooms/#{@room.id}") do %>
+
+  <input type="hidden" name="start_day" value="<%= @reservation.start_day %>">
+  <input type="hidden" name="finish_day" value="<%= @reservation.finish_day %>">
+  <input type="hidden" name="number_of_people" value="<%= @reservation.number_of_people %>">
+
+  <div class="reservation-new-btn-back">
+    <input type="submit" value="前の画面に戻る">
+  </div>
+
+  <% end %>
+
+</div>

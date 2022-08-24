@@ -1,0 +1,34 @@
+<div class="rooms-list">
+
+  <!-- 検索件数部分 -->
+  <p class="rooms-count">検索結果：<%= @rooms.count %>件</p>
+
+  <!-- 一覧部分 -->
+  <div class="rooms">
+
+    <% @rooms.each do |room| %>
+
+      <div class="room">
+        <%= link_to("/rooms/#{room.id}") do %>
+          <div class="room-container">
+            <div class="room-top">
+              <% if room.image_name %>
+                <img class="rooms-list-image" src="<%= "/room_images/#{room.image_name}" %>" alt="<%= "#{room.name}のルーム画像" %>" width="100%">
+              <% else %>
+                <img class="rooms-list-image" src="<%= "/default_images/room_image_default.png" %>" alt="<%= "#{room.name}のルーム画像" %>" width="100%">
+              <% end %>
+            </div>
+            <div class="room-bottom">
+              <p class="rooms-list-name"><%= room.name %></p>
+              <p class="rooms-list-address"><%= room.address %></p>
+              <p class="rooms-list-price">¥<%= room.price %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+    <% end %>
+
+  </div>
+
+</div>

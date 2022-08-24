@@ -1,0 +1,5 @@
+/user_images/*
+!/user_images/.gitkeep
+
+/room_images/*
+!/room_images/.gitkeep

@@ -1,0 +1,57 @@
+<div class="profile">
+
+  <div class="user-menu">
+    <div class="user-menu-container">
+      <a class="user_menu_item" href="/users/account">アカウント</a>
+      <a class="user_menu_item menu-active" href="/users/profile">プロフィール</a>
+    </div>
+  </div>
+
+  <div class="profile-area">
+    <div class="profile-container">
+      <h2 class="profile-title">プロフィール情報</h2>
+
+      <hr>
+
+      <div class="profile-image">
+        <% if current_user.image_name %>
+          <img src="<%= "/user_images/#{current_user.image_name}" %>" alt="<%= "#{current_user.name}のアイコン画像" %>">
+        <% else %>
+          <img src="<%= "/default_images/user_image_default.jpg" %>" alt="<%= "#デフォルトのアイコン画像" %>">
+        <% end %>
+      </div>
+
+      <hr>
+      <%= form_tag("/users/profile/update", {multipart: true}) do %>
+
+      <div class="profile-row only-user-image-name">
+        <p>アイコン画像</p>
+        <input name="image_name" type="file">
+      </div>
+
+      <hr>
+
+      <div class="profile-row">
+        <p>名前<span class="required-label">必須</span></p>
+        <input name="name" type="text" value="<%= @user.name %>" >
+      </div>
+
+      <hr>
+
+      <div class="profile-row">
+        <p>自己紹介<span class="required-label">必須</span></p>
+        <textarea name="introduction"><%= @user.introduction %></textarea>
+      </div>
+
+      <hr>
+
+      <div class="profile-btn">
+        <input type="submit" value="更新する">
+      </div>
+
+      <% end %>
+
+    </div>
+  </div>
+
+</div>

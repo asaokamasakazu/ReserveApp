@@ -1,0 +1,37 @@
+<div class="account">
+
+  <div class="user-menu">
+    <div class="user-menu-container">
+      <a class="user_menu_item menu-active" href="/users/account">アカウント</a>
+      <a class="user_menu_item" href="/users/profile">プロフィール</a>
+    </div>
+  </div>
+
+  <div class="account-area">
+    <div class="account-container">
+      <h2 class="account-title">アカウント情報</h2>
+
+      <hr>
+
+      <div class="account-row">
+        <label for="email">メールアドレス</label>
+        <p><%= current_user.email %></p>
+      </div>
+
+      <hr>
+
+      <div class="account-row">
+        <label for="password">パスワード</label>
+        <p>*********</p>
+      </div>
+
+      <hr>
+
+      <a href="edit">
+        <input class="account-btn" type="submit" value="編集する">
+      </a>
+
+    </div>
+  </div>
+
+</div>

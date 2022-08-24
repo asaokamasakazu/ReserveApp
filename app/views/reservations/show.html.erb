@@ -1,0 +1,31 @@
+<div class="reservation-show">
+  <div class="reservation-show-box">
+
+    <div class="reservation-show-row">
+      <label for="room">予約した部屋</label>
+      <%= link_to(@reservation.room.name, "/rooms/#{@reservation.room.id}") %>
+    </div>
+
+    <hr>
+
+    <div class="reservation-show-row">
+      <label for="start_day">開始日</label>
+      <p><%= @reservation.start_day %></p>
+    </div>
+
+    <hr>
+
+    <div class="reservation-show-row">
+      <label for="finish_day">終了日</label>
+      <p><%= @reservation.finish_day %></p>
+    </div>
+
+    <hr>
+
+    <div class="reservation-show-row">
+      <label for="price">価格</label>
+      <p><%= @reservation.total_amount %></p>
+    </div>
+
+  </div>
+</div>

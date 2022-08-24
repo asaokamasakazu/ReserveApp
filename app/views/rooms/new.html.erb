@@ -1,0 +1,75 @@
+<div class="register-room">
+
+  <!-- メニューエリア -->
+  <div class="room-menu">
+    <div class="room-menu-container">
+      <a class="basic-information" href="/rooms/new">基本情報</a>
+    </div>
+  </div>
+
+  <!-- ルーム情報登録エリア -->
+  <div class="register-room-area">
+    <div class="register-room-container">
+      <h2 class="register-room-title">ルーム情報登録</h2>
+
+      <div class="validates-errors">
+        <ul>
+          <% @room.errors.full_messages.each do |message| %>
+            <li>
+              <%= message %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <hr>
+
+      <%= form_tag("/rooms/create", {multipart: true}) do %>
+
+        <div class="register-room-forms">
+
+          <div class="register-room-form">
+            <p class="register-room-form-title">ルーム名<span class="required-label">必須</span></p>
+            <input name="name" type="text" placeholder="ルーム名を入力" value="<%= @room.name %>">
+          </div>
+
+          <hr>
+
+          <div class="register-room-form">
+            <p class="register-room-form-title">ルーム紹介<span class="required-label">必須</span></p>
+            <textarea name="introduction" placeholder="ルーム説明を入力"><%= @room.introduction %></textarea>
+          </div>
+
+          <hr>
+
+          <div class="register-room-form">
+            <p class="register-room-form-title">料金<span class="required-label">必須</span></p>
+            <input name="price" type="number" placeholder="一日あたりの料金を入力" value="<%= @room.price %>">
+          </div>
+
+          <hr>
+
+          <div class="register-room-form">
+            <p class="register-room-form-title">住所<span class="required-label">必須</span></p>
+            <input name="address" type="text" placeholder="住所を入力" value="<%= @room.address %>">
+          </div>
+
+          <hr>
+
+          <div class="register-room-form">
+            <p class="register-room-form-title">ルーム画像</p>
+            <input class="only-image-name" name="image_name" type="file">
+          </div>
+
+          <hr>
+
+        </div>
+
+        <input class="register-room-btn" type="submit" value="登録">
+
+      <% end %>
+
+    </div>
+  </div>
+
+</div>

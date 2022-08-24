@@ -1,0 +1,54 @@
+<div class="sign-up">
+  <div class="sign-up-container">
+
+    <p class="sign-up-title">新しいアカウントを作成</p>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "users/shared/error_messages", resource: resource %>
+
+      <div class="sign-up-forms">
+
+        <div class="sign-up-form-one">
+          <P>必須</P>
+          <div class="field">
+            <%= f.text_field :name, autofocus: true, :placeholder => "ユーザー名" %>
+          </div>
+        </div>
+
+        <div class="sign-up-form-one">
+          <P>必須</P>
+          <div class="field sign-up-form-one">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "メールアドレス" %>
+          </div>
+        </div>
+
+        <div class="sign-up-form-one">
+          <P>必須</P>
+          <div class="field sign-up-form-one">
+            <%= f.password_field :password, autocomplete: "new-password", :placeholder => "パスワード(#{@minimum_password_length}文字以上)" %>
+          </div>
+        </div>
+
+        <div class="sign-up-form-one">
+          <P>必須</P>
+          <div class="field sign-up-form-one">
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", :placeholder => "パスワード確認" %>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="sing-up-btn">
+        <div class="actions">
+          <%= f.submit "新しいアカウントを作成" %>
+        </div>
+      </div>
+
+    <% end %>
+
+    <div class="sign-in-a">
+      <%= render "users/shared/links"%>
+    </div>
+
+  </div>
+</div>

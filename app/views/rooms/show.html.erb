@@ -1,0 +1,57 @@
+<div class="room-show">
+
+  <div class="room-show-left">
+    <div class="room-show-room-image">
+      <% if @room.image_name %>
+        <img src="<%= "/room_images/#{@room.image_name}" %>" alt="<%= "#{@room.name}のルーム画像" %>">
+      <% else %>
+        <img src="<%= "/default_images/room_image_default.png" %>" alt="<%= "#{@room.name}のルーム画像" %>">
+      <% end %>
+    </div>
+    <div class="room-show-detile">
+      <a href="/">
+        <% if @room.user_id %>
+          <img class="room-show-user-image" src="<%= "/user_images/#{@room.user_id}.jpg" %>" alt="<%= "#{@room.name}のルーム登録者のアイコン" %>">
+        <% else %>
+          <img class="room-show-user-image" src="/default_images/user_image_default.jpg" alt="<%= "#{@room.name}のルーム登録者のアイコン" %>">
+        <% end %>
+      </a>
+      <div class="room-show-prof">
+        <h2 class="room-show-name"><%= @room.name %></h2>
+        <p class="room-show-address"><%= @room.address %></p>
+      </div>
+    </div>
+    <p class="room-show-introduction"><%= @room.introduction %></p>
+  </div>
+
+  <div class="room-show-right">
+    <div class="room-show-right-container">
+      <p class="room-show-price">¥<%= @room.price %> / 日</p>
+
+      <%= form_tag("/reservations/new") do %>
+        <div class="room-show-form">
+          <p>開始日</p>
+          <input type="date" name="start_day" max="9999-12-31" min="<%= @today %>" value="<%= @reservation.start_day %>">
+        </div>
+
+        <div class="room-show-form">
+          <p>終了日</p>
+          <input type="date" name="finish_day" max="9999-12-31" min="<%= @today + 1 %>" value="<%= @reservation.finish_day %>">
+        </div>
+
+        <div class="room-show-form">
+          <p>人数</p>
+          <input type="number" name="number_of_people" value="<%= @reservation.number_of_people %>">
+        </div>
+
+        <input type="hidden" value="<%= @room.id %>" name="room_id">
+
+        <div class="room-show-form-btn">
+          <input type="submit" value="予約する">
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,51 @@
+<div class="reservations">
+  <div class="reservations-container">
+    
+    <h2 class="reservations-title">予約済みルーム一覧</h2>
+
+    <div class="reservations-table">
+      <table>
+  
+        <thead>
+          <tr>
+            <th>ルーム画像</th>
+            <th>ルーム名</th>
+            <th>ルーム紹介</th>
+            <th>合計料金</th>
+            <th>開始日</th>
+            <th>終了日</th>
+            <th>予約確定日時</th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <% @reservations.each do |reservation| %>
+            <tr>
+              <td>
+                <%= link_to("/rooms/#{reservation.room.id}") do %>
+                  <% if reservation.room.image_name %>
+                    <img class="reservations-table-image" src="<%= "/room_images/#{reservation.room.image_name}" %>" alt="<%= "#{reservation.room.name}のルーム画像" %>">
+                  <% else %>
+                  <img class="reservations-table-image" src="<%= "/default_images/room_image_default.png" %>" alt="<%= "デフォルトのルーム画像" %>">
+                  <% end %>
+                <% end %>
+              </td>
+              <td>
+                <div class="reservations-table-link">
+                  <%= link_to("#{reservation.room.name}", "/rooms/#{reservation.room.id}") %>
+                </div>
+              </td>
+              <td><%= reservation.room.introduction %></td>
+              <td><%= reservation.total_amount %></td>
+              <td><%= reservation.start_day %></td>
+              <td><%= reservation.finish_day %></td>
+              <td><%= reservation.created_at %></td>
+            </tr>
+          <% end %>
+        </tbody>
+  
+      </table>
+    </div>
+
+  </div>
+</div>

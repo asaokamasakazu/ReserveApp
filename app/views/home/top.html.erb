@@ -1,0 +1,59 @@
+<div class="top">
+
+  <div class="top-main">
+    <div class="top-container">
+      <div class="area-search">
+        <h1 class="area-search-title">Potepan Shareでまだ体験したことのない旅をしよう</h1>
+        <p class="area-search-label">エリア</p>
+        
+        <%= search_form_for @q, url: search_rooms_path do |f| %>
+          <div class="top-search">
+            <%= f.search_field :address_cont, placeholder: "エリアで検索" %>
+          </div>
+          <div class="top-submit">
+            <%= f.submit '探す' %>
+          </div>
+        <% end %>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="recommendation-area">
+    <div class="top-container">
+      <h2 class="recommendation-area-title">おすすめエリア</h2>
+      <div class="recommendation-area-item">
+
+        <div class="recommendation-area-item-one">
+          <a href="/rooms/search?q%5Baddress_cont%5D=東京">
+            <span>東京</span>
+            <img class="recommendation-area-image" src="https://presite-potepancamp-rails-02.herokuapp.com/assets/img_tokyo.jpg">
+          </a>
+        </div>
+
+        <div class="recommendation-area-item-one">
+          <a href="/rooms/search?q%5Baddress_cont%5D=大阪">
+            <span>大阪</span>
+            <img class="recommendation-area-image" src="https://presite-potepancamp-rails-02.herokuapp.com/assets/img_osaka.jpg">
+          </a>
+        </div>
+
+        <div class="recommendation-area-item-one">
+          <a href="/rooms/search?q%5Baddress_cont%5D=京都">
+            <span>京都</span>
+            <img class="recommendation-area-image" src="https://presite-potepancamp-rails-02.herokuapp.com/assets/img_kyoto.jpg">
+          </a>
+        </div>
+
+        <div class="recommendation-area-item-one">
+          <a href="/rooms/search?q%5Baddress_cont%5D=札幌">
+            <span>札幌</span>
+            <img class="recommendation-area-image" src="https://presite-potepancamp-rails-02.herokuapp.com/assets/img_sapporo.jpg">
+          </a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+</div> 
