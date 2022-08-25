@@ -57,7 +57,13 @@
           <div class="header-right-items">
             <% if current_user.present? %>
               <p><a href="/users/account"><%= current_user.name %></a></p>
-              <a href="/users/account"><img class="host-icon" alt="ユーザーアイコン画像" src="/default_images/user_image_default.jpg"></a>
+              <a href="/users/account">
+                <% if current_user.image_name %>
+                  <img class="host-icon" src="<%= "/user_images/#{current_user.image_name}" %>" alt="<%= "#{current_user.name}のユーザーアイコン" %>">
+                <% else %>
+                  <img class="host-icon" src="/default_images/user_image_default.jpg" alt="デフォルトのユーザーアイコン">
+                <% end %>
+              </a>
             <% else %>
               <div class="header-signup_btn">
                 <%= link_to("ログイン", "/users/sign_in") %>
